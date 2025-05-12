@@ -1,7 +1,7 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 load_dotenv()
 
@@ -11,14 +11,14 @@ client = OpenAI(
 
 class Job(BaseModel):
     title: str
+    category: str
+    """Category: example -> 'IT', 'Sales'"""
     salary: str
     company: str
     city: str
+    """City: example -> 'Surabaya', 'Jakarta'"""
     url: str
     description: str
 
 class JobList(BaseModel):
     jobs: list[Job]
-
-
-
